@@ -17,7 +17,7 @@ async def welcome(message: types.Message):
     await message.answer_sticker('CAACAgIAAxkBAAOBZFED4pZTH2Hj91QdQ4PqWRsMNQsAAkwAA6_GURo638WRPCyjPy8E')
     await message.answer(
         f"{message.from_user.first_name}, вот список команд, которые я понимаю:\
-        \n/logo - показать логотип\n/create_holst - натяжка холста\n/grunt_holst - грунт холста\n/show_picther - показать картины")
+        \n/logo - показать логотип\n/create_holst - натяжка холста\n/clue_holst - проклейка холста\n/grunt_holst - грунт холста\n/show_picther - показать картины")
 
 
 @dp.message_handler(content_types=['sticker'])
@@ -29,15 +29,25 @@ async def sticker(message: types.Message):
 @dp.message_handler(commands=['create_holst'])
 async def create_holst(message: types.Message):
     await message.answer(f'{message.from_user.first_name}, как натянуть холст:\n\
+    Инструмент: щипцы, степлер+скобы, карандаш, ножницы, губка для воды\n\
+    Небольшой холст можно тянуть пальцами (до 1 метра)\n\
     1 - вырезаем холст (размер подрамника + запас на заворот с каждой стороны \n\
-    2 - кладём в цент холста с лицевой стороны подрамник и очерчиваем по периметру карандашом \n\
-    3 - смачиваем лицевую поверхность холста\n\
-    4 - натяжку производим крестом (лево-право, верх-низ)')
+    2 - кладём в цент холста с лицевой стороны подрамник и очерчиваем по периметру карандашом !будет ориентиром!\n\
+    3 - смачиваем лицевую поверхность холста (оставляем на 5 мин)\n\
+    4 - натяжку производим крестом (верх-низ, лево-право -- первый крест не тянем слишком сильно) \n\
+    5 - тянем диагонали (тоже крестом) \n!!! Сверяемся с очерченым контуром (напуск 2 мм с каждой стороны)\n\
+    6 - заворачиваем уголки\n\7 - пробиваем заднюю сторону. Всё!')
+
+@dp.message_handler(commands=['clue_holst'])
+async def clue_holst(message: types.Message):
+    await message.answer(f'{message.from_user.first_name}, как загрунтовать холст:\n\
+    Заготовка')
 
 
 @dp.message_handler(commands=['grunt_holst'])
 async def grunt_holst(message: types.Message):
-    await message.answer(f'{message.from_user.first_name}, как загрунтовать холст:')
+    await message.answer(f'{message.from_user.first_name}, как загрунтовать холст:\n\
+    Заготовка')
 
 
 @dp.message_handler(commands=['show_picther'])
